@@ -4,6 +4,7 @@
 
 require("@nomiclabs/hardhat-waffle");
 require("@nomiclabs/hardhat-ethers");
+require("@nomiclabs/hardhat-etherscan");
 require("@nomiclabs/hardhat-ganache");
 //require("./tasks");
 require("hardhat-deploy");
@@ -12,6 +13,7 @@ require("dotenv").config();
 
 const PRIVATE_KEY_MOONBASE = process.env.PRIVATE_KEY_MOONBASE;
 const MOONBASE_RPC_URL = process.env.MOONBASE_RPC_URL;
+const MOONBASEALPHA_API_KEY = process.env.MOONBASEALPHA_API_KEY;
 
 // This is a sample Hardhat task. To learn how to create your own go to
 // https://hardhat.org/guides/create-task.html
@@ -39,5 +41,8 @@ module.exports = {
       saveDeployments: true,
       chainId: 1287,
     },
+  },
+  etherscan: {
+    apiKey: MOONBASEALPHA_API_KEY,
   },
 };

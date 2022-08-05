@@ -104,11 +104,11 @@ contract LetterBoxingv2 is RMRKIssuable, RMRKMultiResource {
     function letterboxMetadataURI(uint256 letterboxTokenId)
         public
         view
-        returns (string memory)
+        returns (string memory, uint64)
     {
         //add try catch
         Resource[] memory letterbox = getFullResources(letterboxTokenId);
-        return letterbox[0].metadataURI;
+        return (letterbox[0].metadataURI, letterbox[0].id);
     }
 
     function resourceCount(uint256 tokenId_) public view returns (uint256) {
@@ -150,9 +150,8 @@ contract LetterBoxingv2 is RMRKIssuable, RMRKMultiResource {
         isNotPaused
     {
         //should add custom data for letterboxer to choose autoaccept
-        string memory letterboxMetadata = letterboxMetadataURI(
-            letterboxTokenId
-        );
+        string memory letterboxMetadata;
+        (letterboxMetadata, ) = letterboxMetadataURI(letterboxTokenId);
         uint256 stampReceiving = stampHeldBy(stampUser);
         createAndAddResource(stampReceiving, letterboxMetadata, true);
     }

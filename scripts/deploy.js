@@ -8,9 +8,9 @@ const { Contract } = require("ethers");
 async function main() {
   //comment out to avoid accidental extra deploys
   const StampMinter = await hre.ethers.getContractFactory("LetterBoxingv2");
-  console.log("Deploying StampMinter...");
+  console.log("Deploying contract...");
   const lbcontract = await StampMinter.deploy();
-  console.group("stamp deployed to: ", lbcontract.address);
+  console.group("letterbox contract deployed to: ", lbcontract.address);
 }
 
 main()
